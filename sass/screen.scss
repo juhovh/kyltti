@@ -1,0 +1,138 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/opacity";
+@import "compass/css3/inline-block";
+@import "compass/utilities/general/clearfix";
+
+$headerColor: #cec6be;
+$lightGreyColor: #474747;
+$darkGreyColor: #1e1e1e;
+
+$headerInfoWidth: 30%;
+$countryMenuWidth: 15%;
+$thumbCaptionHeight: 34px;
+$thumbCaptionOpacity: 0.8;
+
+body {
+  font: 85%/1.4 'Rambla', sans-serif;
+  background-color: $darkGreyColor;
+}
+
+h1 {
+  font: 300%/1.4 'Rambla', sans-serif;
+  margin-bottom: 30px;
+  color: black;
+}
+
+header {
+  background-color: $headerColor;
+  color: $lightGreyColor;
+  @include box-shadow(0px 8px 30px black);
+  padding-top: 50px;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+
+  div.header-info {
+    @include inline-block(top);
+    width: $headerInfoWidth;
+  }
+  div.header-image {
+    @include inline-block(top);
+    width: 100% - $headerInfoWidth;
+    img {
+      float: right;
+      max-width: 100%;
+    }
+    @include clearfix;
+  }
+}
+
+nav.country-menu {
+  @include inline-block(top);
+  width: $countryMenuWidth;
+  color: $lightGreyColor;
+  padding: 10px;
+  @include box-sizing(border-box);
+}
+
+div.image-grid {
+  @include inline-block(top);
+  width: 100% - $countryMenuWidth;
+  padding-left: 40px;
+  padding-right: 40px;
+  @include box-sizing(border-box);
+
+  div.image-thumb {
+    width: 25%;
+    float: left;
+    padding: 7px;
+    @include box-sizing(border-box);
+    margin-bottom: -$thumbCaptionHeight;
+
+    > img {
+      max-width: 100%;
+      border: 1px solid $lightGreyColor;
+      @include box-shadow(3px 3px 4px black);
+    }
+    div.caption {
+      position: relative;
+      bottom: $thumbCaptionHeight;
+
+      width: 100%;
+      height: $thumbCaptionHeight;
+
+      @include opacity(0);
+      border: 1px solid black;
+      background-color: black;
+      color: white;
+
+      text-align: center;
+      div.caption-text {
+        padding-top: 8px;
+      }
+    }
+    &:hover div.caption {
+      @include opacity($thumbCaptionOpacity);
+    }
+  }
+}
+
+@media (max-width: 979px) {
+  div.image-grid div.image-thumb {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+  header {
+    padding-top: 0;
+    div.header-info {
+      width: 100%;
+      text-align: center;
+    }
+    div.header-image {
+      display: none;
+    }
+  }
+
+  nav.country-menu {
+    display: none;
+  }
+  div.image-grid {
+    width: 100%;
+    div.image-thumb {
+      width: 100%;
+      div.caption {
+        @include opacity($thumbCaptionOpacity);
+      }
+    }
+  }
+}
+
