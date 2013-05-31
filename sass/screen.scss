@@ -18,6 +18,7 @@ $headerInfoWidth: 30%;
 $countryMenuWidth: 15%;
 $thumbCaptionHeight: 34px;
 $thumbCaptionOpacity: 0.8;
+$thumbCaptionTextPaddingTop: 8px;
 
 body {
   font: 85%/1.4 'Rambla', sans-serif;
@@ -43,9 +44,21 @@ header {
   padding-bottom: 10px;
   margin-bottom: 50px;
 
+  div.header-image-small {
+    display: none;
+
+    width: 100%;
+    padding-top: 10px;
+    img {
+      float: right;
+    }
+  }
   div.header-info {
     @include inline-block(top);
     width: $headerInfoWidth;
+    p {
+      margin-bottom: 10px;
+    }
   }
   div.header-image {
     @include inline-block(top);
@@ -85,7 +98,7 @@ div.image-grid {
     }
     div.caption {
       position: relative;
-      bottom: $thumbCaptionHeight;
+      bottom: $thumbCaptionHeight + $thumbCaptionTextPaddingTop - 1px;
 
       width: 100%;
       height: $thumbCaptionHeight;
@@ -97,7 +110,7 @@ div.image-grid {
 
       text-align: center;
       div.caption-text {
-        padding-top: 8px;
+        padding-top: $thumbCaptionTextPaddingTop;
       }
     }
     &:hover div.caption {
@@ -115,9 +128,16 @@ div.image-grid {
 @media (max-width: 767px) {
   header {
     padding-top: 0;
+    padding-left: 10px;
+    div.header-image-small {
+      display: block;
+    }
     div.header-info {
       width: 100%;
       text-align: center;
+      h1 {
+        display: none;
+      }
     }
     div.header-image {
       display: none;
@@ -129,6 +149,8 @@ div.image-grid {
   }
   div.image-grid {
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
     div.image-thumb {
       width: 100%;
       div.caption {
