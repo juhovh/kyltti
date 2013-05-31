@@ -24,6 +24,10 @@ body {
   background-color: $darkGreyColor;
 }
 
+img {
+  max-width: 100%;
+}
+
 h1 {
   font: 300%/1.4 'Rambla', sans-serif;
   margin-bottom: 30px;
@@ -48,7 +52,6 @@ header {
     width: 100% - $headerInfoWidth;
     img {
       float: right;
-      max-width: 100%;
     }
     @include clearfix;
   }
@@ -77,7 +80,6 @@ div.image-grid {
     margin-bottom: -$thumbCaptionHeight;
 
     > img {
-      max-width: 100%;
       border: 1px solid $lightGreyColor;
       @include box-shadow(3px 3px 4px black);
     }
