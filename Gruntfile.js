@@ -13,13 +13,15 @@ module.exports = function(grunt) {
       ]
     },
     compass: {
-      options: {
-        sassDir: 'public/sass',
-        cssDir: 'public/stylesheets',
-        imagesDir: 'public/images',
-        fontsDir: 'public/fonts',
-        relativeAssets: true,
-        force: true
+      all: {
+        options: {
+          sassDir: 'public/sass',
+          cssDir: 'public/stylesheets',
+          imagesDir: 'public/images',
+          fontsDir: 'public/fonts',
+          relativeAssets: true,
+          force: true
+        }
       }
     },
     watch: {
