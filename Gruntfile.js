@@ -2,18 +2,17 @@ module.exports = function(grunt) {
   grunt.initConfig({
     clean: {
       build: [
-        'webapp-build',
-        'webapp/stylesheets',
+        'public/stylesheets',
         '.sass-cache'
       ]
     },
     compass: {
       dev: {
         options: {
-          sassDir: 'webapp/sass',
-          cssDir: 'webapp/stylesheets',
-          imagesDir: 'webapp/images',
-          fontsDir: 'webapp/fonts',
+          sassDir: 'public/sass',
+          cssDir: 'public/stylesheets',
+          imagesDir: 'public/images',
+          fontsDir: 'public/fonts',
           relativeAssets: true,
           force: true
         }
@@ -21,7 +20,7 @@ module.exports = function(grunt) {
     },
     watch: {
       dev: {
-        files: ['webapp/sass/**/*'],
+        files: ['public/sass/**/*'],
         tasks: ['compass:dev']
       }
     }
