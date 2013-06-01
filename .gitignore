@@ -1,4 +1,6 @@
-node_modules/
+awsConfig.json
 stylesheets/
+
+node_modules/
 .sass-cache/
 *.swp
