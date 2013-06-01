@@ -101,7 +101,7 @@ exports.setup = function(app) {
         var filename;
         switch (req.params.size) {
           case 'thumb':
-            filename = 'photos/thumbs/p' + row.fn;
+            filename = 'photos/square/' + row.fn;
             break;
           case 'medium':
             filename = 'photos/medium/' + row.fn;
