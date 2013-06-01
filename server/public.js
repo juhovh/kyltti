@@ -15,13 +15,13 @@ exports.setup = function(app) {
   app.get('/api/gossips/:id', function(req, res) {
     var query = "SELECT * FROM gossip WHERE id = ?";
     var params = [req.params.id];
-    db.all(query, params, function(err, rows) {
+    db.get(query, params, function(err, row) {
       if (err) {
         res.send(500, {error: err});
-      } else if (rows.length !== 1) {
+      } else if (!row) {
         res.send(404, {error: "Gossip not found"});
       } else {
-        res.send(rows[0]);
+        res.send(row);
       }
     });
   });
@@ -40,13 +40,13 @@ exports.setup = function(app) {
   app.get('/api/destinations/:id', function(req, res) {
     var query = "SELECT * FROM destination WHERE id = ?";
     var params = [req.params.id];
-    db.all(query, params, function(err, rows) {
+    db.get(query, params, function(err, row) {
       if (err) {
         res.send(500, {error: err});
-      } else if (rows.length !== 1) {
+      } else if (!row) {
         res.send(404, {error: "Destination not found"});
       } else {
-        res.send(rows[0]);
+        res.send(row);
       }
     });
   });
@@ -73,13 +73,13 @@ exports.setup = function(app) {
                 "FROM photo, destination " +
                 "WHERE photo.id = ? AND photo.destination_id = destination.id"; 
     var params = [req.params.id];
-    db.all(query, params, function(err, rows) {
+    db.get(query, params, function(err, row) {
       if (err) {
         res.send(500, {error: err});
-      } else if (rows.length !== 1) {
+      } else if (!row) {
         res.send(404, {error: "Photo not found"});
       } else {
-        res.send(rows[0]);
+        res.send(row);
       }
     });
   });
