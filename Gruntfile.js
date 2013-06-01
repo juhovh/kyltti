@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     },
     watch: {
       files: ['public/sass/**/*'],
-      tasks: ['compass:dev']
+      tasks: ['compass']
     }
   });
 
