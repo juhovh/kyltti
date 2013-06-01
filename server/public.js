@@ -14,7 +14,7 @@ exports.setup = function(app) {
   
   app.get('/api/gossips/:id', function(req, res) {
     var query = "SELECT * FROM gossip WHERE id = ?";
-    var params = [req.params.id]
+    var params = [req.params.id];
     db.all(query, params, function(err, rows) {
       if (err) {
         res.send(500, {error: err});
@@ -55,8 +55,8 @@ exports.setup = function(app) {
     var query = "SELECT photo.id, destination.name AS destination, photo.caption, photo.fn, photo.deleted " +
                 "FROM photo, destination " +
                 "WHERE photo.destination_id = destination.id"; 
-    var params = []
-    if (req.query.destination != null) {
+    var params = [];
+    if (req.query.destination) {
       query += " AND destination.name = ?";
       params.push(req.query.destination);
     }
