@@ -6,19 +6,22 @@
     <meta charset='utf-8'>
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
 
+    <!-- Load all custom stylesheets -->
     <link href="stylesheets/print.css" media="print" rel="stylesheet" type="text/css" />
     <link href="stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <!--[if IE]>
       <link href="stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->
 
-    <!--[if IE]>
-      <script src="javascripts/imgsizer.js"></script>
-    <![endif]-->
-
+    <!-- Load IE support for HTML5 tags -->
     <!--[if lt IE 9]>
       <script src="html5shiv-3.6.2/html5shiv.js"></script>
       <script src="html5shiv-3.6.2/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    <!-- Load IE hack for fluid images support -->
+    <!--[if IE]>
+      <script src="javascripts/imgsizer.js"></script>
     <![endif]-->
   </head>
   <body>
@@ -34,26 +37,14 @@
         <img src="images/kyltti_Hero.png">
       </div>
     </header>
-    <nav class="country-menu">
+    <nav class="menu">
       <ul>
-        <li>Benin</li>
-        <li>Brunei</li>
-        <li>Burkina Faso</li>
+        <% _.each(destinations, function(name) { %>
+          <li><%= name %></li>
+        <% }); %>
       </ul>
-    </nav><div class="image-grid">
-      <div class="image-thumb">
-        <img src="http://www.kyltti.com/images/espanja1.jpg">
-        <div class="caption"><div class="caption-text">Kenia</div></div>
-      </div><div class="image-thumb">
-        <img src="http://www.kyltti.com/images/espanja1.jpg">
-        <div class="caption"><div class="caption-text">Kenia</div></div>
-      </div><div class="image-thumb">
-        <img src="http://www.kyltti.com/images/espanja1.jpg">
-        <div class="caption"><div class="caption-text">Kenia</div></div>
-      </div><div class="image-thumb">
-        <img src="http://www.kyltti.com/images/espanja1.jpg">
-        <div class="caption"><div class="caption-text">Kenia</div></div>
-      </div>
+    </nav><div class="content">
+      <%= content %>
     </div>
   </body>
 </html>

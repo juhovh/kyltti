@@ -15,7 +15,7 @@ $lightGreyColor: #474747;
 $darkGreyColor: #1e1e1e;
 
 $headerInfoWidth: 30%;
-$countryMenuWidth: 15%;
+$menuWidth: 15%;
 $thumbCaptionHeight: 34px;
 $thumbCaptionOpacity: 0.8;
 $thumbCaptionTextPaddingTop: 8px;
@@ -70,21 +70,23 @@ header {
   }
 }
 
-nav.country-menu {
+nav.menu {
   @include inline-block(top);
-  width: $countryMenuWidth;
+  width: $menuWidth;
   color: $lightGreyColor;
   padding: 10px;
   @include box-sizing(border-box);
 }
 
-div.image-grid {
+div.content {
   @include inline-block(top);
-  width: 100% - $countryMenuWidth;
+  width: 100% - $menuWidth;
   padding-left: 40px;
   padding-right: 40px;
   @include box-sizing(border-box);
+}
 
+div.image-grid {
   div.image-thumb {
     width: 25%;
     float: left;
@@ -137,22 +139,23 @@ div.image-grid {
       text-align: center;
       h1 {
         display: none;
-      }
+}
     }
     div.header-image {
       display: none;
     }
   }
 
-  nav.country-menu {
+  nav.menu {
     display: none;
   }
-  div.image-grid {
+  div.content {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
+  }
+  div.image-grid {
     div.image-thumb {
-      width: 100%;
       div.caption {
         @include opacity($thumbCaptionOpacity);
       }
