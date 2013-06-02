@@ -23,7 +23,7 @@ app.configure(function() {
 
   // Default engine HTML, set template path
   app.set('view engine', 'html');
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/public/views');
 });
 
 views.setup(app);
