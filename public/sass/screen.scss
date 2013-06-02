@@ -21,7 +21,7 @@ $menuWidth: 15%;
 @import "photo";
 
 body {
-  font: 85%/1.4 'Rambla', sans-serif;
+  font-family: 'Rambla', sans-serif;
   background-color: $darkGreyColor;
 }
 
@@ -68,7 +68,7 @@ div.image-grid {
       text-align: center;
       h1 {
         display: none;
-}
+      }
     }
     div.header-image {
       display: none;
@@ -86,9 +86,6 @@ div.image-grid {
   div.image-grid {
     div.photo {
       width: 50%;
-      div.caption {
-        @include opacity(0.8);
-      }
     }
   }
 }

@@ -1,7 +1,7 @@
 $photoPadding: 7px;
 $photoBorderColor: #474747;
-$photoCaptionOpacity: 0.8;
-$photoCaptionPadding: 10px;
+$photoCaptionOpacity: 0.9;
+$photoCaptionPadding: 7px;
 
 div.photo {
   // Relative positioning for absolute caption
@@ -55,3 +55,12 @@ div.photo {
     @include opacity($photoCaptionOpacity);
   }
 }
+
+@media (max-width: 767px) {
+  div.photo {
+    > div.caption {
+      @include opacity($photoCaptionOpacity);
+    }
+  }
+}
+
