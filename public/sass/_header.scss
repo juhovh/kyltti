@@ -1,0 +1,36 @@
+header {
+  background-color: $headerColor;
+  color: $lightGreyColor;
+  @include box-shadow(0px 8px 30px black);
+  padding-top: 50px;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  margin-bottom: 50px;
+
+  div.header-image-small {
+    display: none;
+
+    width: 100%;
+    padding-top: 10px;
+    img {
+      float: right;
+      max-width: 100%;
+    }
+  }
+  div.header-info {
+    @include inline-block(top);
+    width: $headerInfoWidth;
+    p {
+      margin-bottom: 10px;
+    }
+  }
+  div.header-image {
+    @include inline-block(top);
+    width: 100% - $headerInfoWidth;
+    img {
+      float: right;
+      max-width: 100%;
+    }
+    @include clearfix;
+  }
+}

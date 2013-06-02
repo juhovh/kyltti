@@ -1,0 +1,52 @@
+$photoPadding: 7px;
+$photoBorderColor: #474747;
+$photoCaptionOpacity: 0.8;
+$photoCaptionPadding: 10px;
+
+div.photo {
+  // Relative positioning for absolute caption
+  float: left;
+  position: relative;
+
+  // Border-box needed for fluid padding
+  @include box-sizing(border-box);
+  padding: $photoPadding;
+
+  > img {
+    // Fluid width
+    width: 100%;
+    height: auto;
+
+    // Styles of the actual photo
+    border: 1px solid $photoBorderColor;
+    @include box-shadow(3px 3px 4px black);
+    @include box-sizing(border-box);
+  }
+
+  > div.caption {
+    overflow: hidden;
+    position: absolute;
+
+    // Position according to padding, why 5px???
+    bottom: $photoPadding + 5px;
+    left: $photoPadding;
+    right: $photoPadding;
+
+    // Styling of the caption text
+    background-color: black;
+    text-align: center;
+    color: white;
+
+    > p {
+      // Padding for the caption text
+      padding: $photoCaptionPadding;
+      margin: 0px;
+    }
+
+    // Show caption only when hovering
+    @include opacity(0.0);
+  }
+  &:hover > div.caption {
+    @include opacity($photoCaptionOpacity);
+  }
+}

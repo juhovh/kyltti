@@ -22,7 +22,7 @@ exports.setup = function(app) {
         };
       });
       res.render('imagegrid', {thumbnails: thumbnails}, function(err, html) {
-        res.render('index', {
+        res.render('main', {
           destinations: destinations,
           content: html.replace(new RegExp('\r?\n', 'g'), '')
         });
