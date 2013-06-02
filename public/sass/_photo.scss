@@ -13,6 +13,11 @@ div.photo {
   padding: $photoPadding;
 
   > img {
+    // Remove all paddings/margins from image
+    display: block;
+    padding: 0;
+    margin: 0;
+
     // Fluid width
     width: 100%;
     height: auto;
@@ -27,8 +32,8 @@ div.photo {
     overflow: hidden;
     position: absolute;
 
-    // Position according to padding, why 5px???
-    bottom: $photoPadding + 5px;
+    // Position according to padding
+    bottom: $photoPadding;
     left: $photoPadding;
     right: $photoPadding;
 
@@ -40,7 +45,7 @@ div.photo {
     > p {
       // Padding for the caption text
       padding: $photoCaptionPadding;
-      margin: 0px;
+      margin: 0;
     }
 
     // Show caption only when hovering
