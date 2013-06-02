@@ -50,6 +50,9 @@ div.content {
 div.image-grid {
   div.photo {
     width: 25%;
+
+    // This makes loading look nicer
+    min-height: 60px;
   }
 }
 
