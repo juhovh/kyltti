@@ -29,27 +29,27 @@
   </head>
   <body>
     <header>
-      </div><div class="header-image-small">
+      </div><div class="header-image">
         <img src="images/kyltti_Hero.png">
       </div><div class="header-info">
         <h1>kyltti.com</h1>
         <p>Reissut ja tarinat jeejee wohoo lisää. Ja näin.</p>
         <p>Reissut ja tarinat jeejee mitä kuuluu kirjoita tähän jotain.</p>
         <p>Saa olla terävää.</p>
-      </div><div class="header-image">
-        <img src="images/kyltti_Hero.png">
       </div>
     </header>
-    <nav class="menu">
-      <ul>
-        <% _.each(destinations, function(name) { %>
-          <li><%= name %></li>
-        <% }); %>
-      </ul>
-    </nav><div class="content">
-      <%= content %>
+    <div class="container">
+      <nav class="menu">
+        <ul>
+          <% _.each(destinations, function(name) { %>
+            <li><%= name %></li>
+          <% }); %>
+        </ul>
+      </nav><div class="content">
+        <%= content %>
+      </div>
+      <hr>
+      <footer>copyright kyltti.com | posti@kyltti.com</footer>
     </div>
-    <hr>
-    <footer>copyright kyltti.com | posti@kyltti.com</footer>
   </body>
 </html>

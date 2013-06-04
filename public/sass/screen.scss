@@ -14,6 +14,8 @@ $headerColor: #cec6be;
 $lightGreyColor: #474747;
 $darkGreyColor: #1e1e1e;
 
+$containerMargin: 20px;
+
 $headerInfoWidth: 30%;
 $menuWidth: 15%;
 
@@ -23,8 +25,6 @@ $menuWidth: 15%;
 body {
   font-family: 'Rambla', sans-serif;
   background-color: $darkGreyColor;
-  margin-left: 20px;
-  margin-right: 20px;
   margin-bottom: 40px;
 }
 
@@ -37,8 +37,6 @@ hr {
 }
 
 header {
-  margin-left: -20px;
-  margin-right: -20px;
 }
 
 footer {
@@ -59,6 +57,12 @@ nav.menu {
   @include box-sizing(border-box);
 }
 
+div.container {
+  margin-left: $containerMargin;
+  margin-right: $containerMargin;
+  @include box-sizing(border-box);
+}
+
 div.content {
   @include inline-block(top);
   width: 100% - $menuWidth;
@@ -75,31 +79,10 @@ div.image-grid {
 }
 
 @media (max-width: 767px) {
-  body {
-    margin-left: 0;
-    margin-right: 0;
+  div.container {
+    margin-left: 5px;
+    margin-right: 5px;
   }
-  header {
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-    div.header-image-small {
-      padding-left: 10px;
-      display: block;
-    }
-    div.header-info {
-      width: 100%;
-      text-align: center;
-      h1 {
-        display: none;
-      }
-    }
-    div.header-image {
-      display: none;
-    }
-  }
-
   nav.menu {
     display: none;
   }

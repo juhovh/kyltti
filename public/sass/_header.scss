@@ -1,36 +1,55 @@
 header {
   background-color: $headerColor;
   color: $lightGreyColor;
-  @include box-shadow(0px 8px 30px black);
+
+  padding-left: $containerMargin;
   padding-top: 50px;
-  padding-left: 20px;
   padding-bottom: 10px;
   margin-bottom: 50px;
+  @include box-shadow(0px 8px 30px black);
 
-  div.header-image-small {
-    display: none;
-
-    width: 100%;
-    padding-top: 10px;
-    img {
-      float: right;
-      max-width: 100%;
-    }
-  }
   div.header-info {
     @include inline-block(top);
     width: $headerInfoWidth;
+    @include box-sizing(border-box);
+
+    padding-right: 10px;
     p {
       margin-bottom: 10px;
     }
   }
+
   div.header-image {
     @include inline-block(top);
     width: 100% - $headerInfoWidth;
+    @include box-sizing(border-box);
+    float: right;
     img {
-      float: right;
+      float: inherit;
       max-width: 100%;
     }
-    @include clearfix;
+  }
+
+  @include clearfix;
+}
+
+@media (max-width: 767px) {
+  header {
+    padding-left: 0;
+    padding-top: 30px;
+    margin-bottom: 30px;
+    div.header-info {
+      width: 100%;
+      text-align: center;
+      padding-left: 10px;
+      padding-right: 10px;
+      h1 {
+        display: none;
+      }
+    }
+    div.header-image {
+      width: 100%;
+      padding-left: 20px;
+    }
   }
 }
