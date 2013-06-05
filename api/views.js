@@ -9,19 +9,27 @@ exports.setup = function(app) {
         res.send(500);
         return;
       }
-      var destinations = _.uniq(_.pluck(rows, 'destination')).sort();
       var sortedphotos = _.sortBy(rows, function(photo) { return photo.destination; });
-      var frontphotos = _.uniq(sortedphotos, true, function(photo) { return photo.destination; });
-      var thumbnails = _.map(frontphotos, function(row) {
+      var groupedphotos = _.uniq(sortedphotos, true, function(photo) { return photo.destination; });
+
+      var groups = _.map(groupedphotos, function(group) {
         return {
-          url: '/api/photos/'+row.id+'/thumb',
-          destination: row.destination
+          url: '/group/'+group.destination,
+          name: group.destination
         };
       });
-      res.render('imagegrid', {thumbnails: thumbnails}, function(err, html) {
-        res.render('main', {
-          destinations: destinations,
-          content: html.replace(new RegExp('\r?\n', 'g'), '')
+      var thumbnails = _.map(groupedphotos, function(group) {
+        return {
+          url: '/api/photos/'+group.id+'/thumb',
+          caption: group.destination
+        };
+      });
+      res.render('menu', {groups: groups}, function(err, menu) {
+        res.render('imagegrid', {thumbnails: thumbnails}, function(err, imagegrid) {
+          res.render('main', {
+            menu: menu,
+            content: imagegrid
+          });
         });
       });
     });

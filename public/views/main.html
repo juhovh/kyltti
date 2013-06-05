@@ -44,11 +44,7 @@
     </header>
     <div class="container">
       <nav class="menu">
-        <ul>
-          <% _.each(destinations, function(name) { %>
-            <li><%= name %></li>
-          <% }); %>
-        </ul>
+        <%= menu %>
       </nav><div class="content">
         <%= content %>
       </div>

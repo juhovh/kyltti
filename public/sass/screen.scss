@@ -11,12 +11,13 @@
 @import "compass/css3/transform";
 @import "compass/css3/images";
 @import "compass/utilities/general/clearfix";
+@import "compass/typography/links/unstyled-link";
 
 $headerColor: #cec6be;
 $lightGreyColor: #474747;
 $darkGreyColor: #1e1e1e;
 
-$containerMargin: 20px;
+$containerMargin: 40px;
 
 $headerInfoWidth: 30%;
 $menuWidth: 15%;
@@ -30,15 +31,17 @@ body {
   margin-bottom: 40px;
 }
 
+a {
+  @include unstyled-link;
+  cursor: pointer;
+}
+
 hr {
   background-color: $lightGreyColor;
   color: $lightGreyColor;
   margin-top: 50px;
   border: 0 none;
   height: 1px;
-}
-
-header {
 }
 
 footer {
@@ -52,17 +55,20 @@ h1 {
   color: black;
 }
 
+div.container {
+  margin-left: $containerMargin;
+  margin-right: $containerMargin;
+  @include box-sizing(border-box);
+}
+
 nav.menu {
   @include inline-block(top);
   width: $menuWidth;
   color: $lightGreyColor;
   @include box-sizing(border-box);
-}
-
-div.container {
-  margin-left: $containerMargin;
-  margin-right: $containerMargin;
-  @include box-sizing(border-box);
+  li.selected {
+    color: white;
+  }
 }
 
 div.content {
