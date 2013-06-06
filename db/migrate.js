@@ -2,21 +2,10 @@ var sqlite3 = require('sqlite3');
 var fs = require('fs');
 var _ = require('underscore');
 
-var dbname = process.argv[2];
-var dumpname = process.argv[3];
-
-if (typeof(dbname) !== 'string') {
-  console.log('Please give a database file as the first argument');
-  process.exit(1);
-}
+var dumpname = process.argv[2];
 
 if (typeof(dumpname) !== 'string') {
   console.log('Please give a database dump file as the second argument');
-  process.exit(1);
-}
-
-if (!fs.existsSync(dbname)) {
-  console.log('Provided database file "' + dbname + '" does not exist');
   process.exit(1);
 }
 
@@ -25,20 +14,17 @@ if (!fs.existsSync(dumpname)) {
   process.exit(1);
 }
 
-var db = new sqlite3.Database(dbname, sqlite3.OPEN_READWRITE, function(err) {
-  if (err) {
-    console.log('Opening database file "' + dbname + '" failed');
-    process.exit(1);
-  }
-  var data;
-  try {
-    data = fs.readFileSync(dumpname, 'utf-8');
-  } catch (e) {
-    console.log('Reading database dump file "' + dumpname + '" failed');
-    process.exit(1);
-  }
-  insertOriginalDump(db, data);
-});
+var data;
+try {
+  data = fs.readFileSync(dumpname, 'utf-8');
+} catch (e) {
+  console.log('Reading database dump file "' + dumpname + '" failed');
+  process.exit(1);
+}
+insertOriginalDump(data);
+
+
+
 
 function getTableValues(data, tablename) {
   var stringRegex = "'([^\\\\']|\\\\.)*'";
@@ -54,7 +40,7 @@ function getTableValues(data, tablename) {
       var fields = row.match(new RegExp(fieldRegex, 'g'));
       return _.map(fields, function(field) {
         if (field.match(new RegExp(stringRegex))) {
-          return field.substring(1, field.length-1);
+          return "'"+field.substring(1, field.length-1).replace("'", "''")+"'";
         } else {
           return field;
         }
@@ -63,10 +49,36 @@ function getTableValues(data, tablename) {
   }
 }
 
-function insertOriginalDump(db, data) {
+function generateGroups(kuvat) {
+  var groups = _.groupBy(kuvat, function(arr) { return arr[0]; });
+  return _.map(groups, function(value, key) {
+    var match = value[0][1].match(new RegExp("^'(.*)\\d+'$"))
+    if (!match) {
+      throw new Error("Invalid name: " + value[0][1]);
+    }
+    var prefix = "'"+match[1]+"'";
+    return [key, prefix];
+  });
+}
+
+function insertOriginalDump(data) {
   var kuvat = getTableValues(data, "kuvat");
   var message = getTableValues(data, "message");
   var palaute = getTableValues(data, "palaute");
   var user = getTableValues(data, "user");
   var vastaus = getTableValues(data, "vastaus");
+  var groups = generateGroups(kuvat);
+
+  console.log("BEGIN TRANSACTION;");
+  _.each(groups, function(group) {
+    console.log("INSERT INTO `group` ('name','prefix') VALUES ("+group[0]+","+group[1]+");");
+  });
+  _.each(kuvat, function(photo) {
+    console.log("INSERT INTO `photo` ('group_id','name','description') VALUES ((SELECT id FROM `group` WHERE name = "+photo[0]+"),"+photo[1]+","+photo[2]+");");
+  });
+  _.each(message, function(comment) {
+    if (comment[4] === "'matkaan'" || comment[4] === "''") return;
+    console.log("INSERT INTO `comment` ('photo_id','date','nick','message','deleted') VALUES ((SELECT id FROM `photo` WHERE name = "+comment[4]+"),"+comment[2]+","+comment[3]+","+comment[1]+","+comment[7]+");");
+  });
+  console.log("COMMIT;");
 }
