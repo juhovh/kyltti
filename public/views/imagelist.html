@@ -1,0 +1,10 @@
+<div class="image-list">
+  <% _.each(images, function(image) { %>
+    <div class="photo">
+      <img src="<%= image.url %>">
+    </div>
+    <div class="description">
+      &ldquo;<%= image.description %>&rdquo;
+    </div>
+  <% }); %>
+</div>

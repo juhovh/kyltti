@@ -86,6 +86,24 @@ div.image-grid {
   }
 }
 
+div.image-list {
+  color: white;
+  text-align: center;
+
+  div.photo {
+    float: none;
+    > img {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  div.description {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+}
+
 @media (max-width: 767px) {
   div.container {
     margin-left: 5px;
