@@ -40,7 +40,7 @@ function getTableValues(data, tablename) {
       var fields = row.match(new RegExp(fieldRegex, 'g'));
       return _.map(fields, function(field) {
         if (field.match(new RegExp(stringRegex))) {
-          return "'"+field.substring(1, field.length-1).replace("'", "''")+"'";
+          return field.replace(/\\'/g, "''").replace(/\\"/g, "\"");
         } else {
           return field;
         }
