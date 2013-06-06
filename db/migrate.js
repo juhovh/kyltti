@@ -77,8 +77,20 @@ function insertOriginalDump(data) {
     console.log("INSERT INTO `photo` ('group_id','name','description') VALUES ((SELECT id FROM `group` WHERE name = "+photo[0]+"),"+photo[1]+","+photo[2]+");");
   });
   _.each(message, function(comment) {
-    if (comment[4] === "'matkaan'" || comment[4] === "''") return;
-    console.log("INSERT INTO `comment` ('photo_id','date','nick','message','deleted') VALUES ((SELECT id FROM `photo` WHERE name = "+comment[4]+"),"+comment[2]+","+comment[3]+","+comment[1]+","+comment[7]+");");
+    if (comment[4] === "''") return;
+    if (comment[4] === "'matkaan'") {
+      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted') VALUES ('matkaan',"+comment[2]+","+comment[3]+","+comment[1]+","+comment[7]+");");
+    } else {
+      console.log("INSERT INTO `comment` ('photo_id','date','nick','message','deleted') VALUES ((SELECT id FROM `photo` WHERE name = "+comment[4]+"),"+comment[2]+","+comment[3]+","+comment[1]+","+comment[7]+");");
+    }
+  });
+  _.each(palaute, function(comment) {
+    var response = _.find(vastaus, function(resp) { return resp[0] == comment[0]; });
+    if (response) {
+      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted','response') VALUES ('palaute',"+comment[3]+","+comment[2]+","+comment[4]+","+(comment[5] != 0 ? "0" : "1")+","+response[1]+");");
+    } else {
+      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted') VALUES ('palaute',"+comment[3]+","+comment[2]+","+comment[4]+","+(comment[5] != 0 ? "0" : "1")+");");
+    }
   });
   console.log("COMMIT;");
 }

@@ -39,10 +39,12 @@ CREATE TABLE "photo" (
 CREATE TABLE "comment" (
     "id" integer PRIMARY KEY,
     "deleted" integer NOT NULL DEFAULT 0,
-    "photo_id" integer NOT NULL,
+    "type" text NOT NULL DEFAULT "photo",
     "date" datetime NOT NULL,
     "nick" text NOT NULL,
     "message" text NOT NULL,
+    "response" text,
+    "photo_id" integer,
     FOREIGN KEY("photo_id") REFERENCES "photo"("id")
 );
 COMMIT;
