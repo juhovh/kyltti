@@ -1,0 +1,7 @@
+kuvat(maa, kuva, teksti) -> group.name, photo.name, photo.description
+message(viestinro, viesti, date, knimi, kuva, maa, ip, poistettu) -> comment.id, comment.message, comment.date, comment.nick, photo.name, group.name, ???, comment.deleted
+user(tunnus, salasana) -> user.username, user.password
+
+
+palaute(nro, ip, nick, date, date, palaute, display) -> feedback.id, ???, feedback.nick, feedback.date, feedback.message, feedback.deleted
+vastaus(nro, vastaus) -> ???
