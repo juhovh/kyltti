@@ -1,4 +1,4 @@
-var sqlite3 = require('sqlite3');
+var passwordHash = require('password-hash');
 var fs = require('fs');
 var _ = require('underscore');
 
@@ -62,14 +62,19 @@ function generateGroups(kuvat) {
 }
 
 function insertOriginalDump(data) {
+  var users = getTableValues(data, "user");
   var kuvat = getTableValues(data, "kuvat");
   var message = getTableValues(data, "message");
   var palaute = getTableValues(data, "palaute");
-  var user = getTableValues(data, "user");
   var vastaus = getTableValues(data, "vastaus");
   var groups = generateGroups(kuvat);
 
   console.log("BEGIN TRANSACTION;");
+  _.each(users, function(user) {
+    var password = user[1].substring(1, user[1].length-1).replace(/''/g, "'");
+    var hashed = passwordHash.generate(password, {algorithm: 'sha256', saltLength: 12});
+    console.log("INSERT INTO `user` ('username,'password') VALUES("+user[0]+","+hashed+");");
+  });
   _.each(groups, function(group) {
     console.log("INSERT INTO `group` ('name','prefix') VALUES ("+group[0]+","+group[1]+");");
   });
