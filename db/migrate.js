@@ -73,7 +73,7 @@ function insertOriginalDump(data) {
   _.each(users, function(user) {
     var password = user[1].substring(1, user[1].length-1).replace(/''/g, "'");
     var hashed = passwordHash.generate(password, {algorithm: 'sha256', saltLength: 12});
-    console.log("INSERT INTO `user` ('username,'password') VALUES("+user[0]+","+hashed+");");
+    console.log("INSERT INTO `user` ('username','password') VALUES("+user[0]+",'"+hashed+"');");
   });
   _.each(groups, function(group) {
     console.log("INSERT INTO `group` ('name','prefix') VALUES ("+group[0]+","+group[1]+");");

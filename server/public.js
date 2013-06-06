@@ -4,8 +4,8 @@ var s3 = require('./s3');
 var bucket = 'kyltti';
 
 exports.setup = function(app) {
-  app.get('/api/gossips/', function(req, res) {
-    db.listGossips(function(err, rows) {
+  app.get('/api/news/', function(req, res) {
+    db.listNews(function(err, rows) {
       if (err) {
         res.send(500, {error: err});
       } else {
@@ -14,20 +14,20 @@ exports.setup = function(app) {
     });
   });
   
-  app.get('/api/gossips/:id', function(req, res) {
-    db.findGossipById(req.params.id, function(err, row) {
+  app.get('/api/news/:id', function(req, res) {
+    db.findNewsById(req.params.id, function(err, row) {
       if (err) {
         res.send(500, {error: err});
       } else if (!row) {
-        res.send(404, {error: "Gossip not found"});
+        res.send(404, {error: "News not found"});
       } else {
         res.send(row);
       }
     });
   });
   
-  app.get('/api/destinations/', function(req, res) {
-    db.listDestinations(function(err, rows) {
+  app.get('/api/groups/', function(req, res) {
+    db.listGroups(function(err, rows) {
       if (err) {
         res.send(500, {error: err});
       } else {
@@ -36,12 +36,12 @@ exports.setup = function(app) {
     });
   });
   
-  app.get('/api/destinations/:id', function(req, res) {
-    db.findDestinationById(req.params.id, function(err, row) {
+  app.get('/api/groups/:id', function(req, res) {
+    db.findGroupById(req.params.id, function(err, row) {
       if (err) {
         res.send(500, {error: err});
       } else if (!row) {
-        res.send(404, {error: "Destination not found"});
+        res.send(404, {error: "Group not found"});
       } else {
         res.send(row);
       }
@@ -85,10 +85,10 @@ exports.setup = function(app) {
         var filename;
         switch (req.params.size) {
           case 'thumb':
-            filename = 'photos/square/' + row.fn;
+            filename = 'photos/square/' + row.name + ".jpg";
             break;
           case 'medium':
-            filename = 'photos/medium/' + row.fn;
+            filename = 'photos/medium/' + row.name + ".jpg";
             break;
           default:
             res.send(404, {error: "Image size is invalid"});
