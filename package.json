@@ -24,5 +24,8 @@
     "aws-sdk": "1.2.0",
 
     "underscore": "1.4.4"
+  },
+  "scripts": {
+    "test": "make test"
   }
 }
