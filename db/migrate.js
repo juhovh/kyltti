@@ -61,6 +61,21 @@ function generateGroups(kuvat) {
   });
 }
 
+function nameUpperCase(name) {
+  name = name.slice(1, -1);
+
+  // Convert first character to upper case
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+
+  // If there are multiple words, convert all first characters to upper case
+  var match;
+  while (match = name.match(/(^|\s)[a-z]/)) {
+    var matchidx = match.index === 0 ? match.index : match.index+1;
+    name = name.slice(0, matchidx) + name.charAt(matchidx).toUpperCase() + name.slice(matchidx+1);
+  }
+  return "'"+name+"'";
+}
+
 function insertOriginalDump(data) {
   var users = getTableValues(data, "user");
   var kuvat = getTableValues(data, "kuvat");
@@ -71,15 +86,17 @@ function insertOriginalDump(data) {
 
   console.log("BEGIN TRANSACTION;");
   _.each(users, function(user) {
-    var password = user[1].substring(1, user[1].length-1).replace(/''/g, "'");
+    var password = user[1].slice(1, -1).replace(/''/g, "'");
     var hashed = passwordHash.generate(password, {algorithm: 'sha256', saltLength: 12});
     console.log("INSERT INTO `user` ('username','password') VALUES("+user[0]+",'"+hashed+"');");
   });
   _.each(groups, function(group) {
-    console.log("INSERT INTO `group` ('name','prefix') VALUES ("+group[0]+","+group[1]+");");
+    var name = nameUpperCase(group[0]);
+    console.log("INSERT INTO `group` ('name','prefix') VALUES ("+name+","+group[1]+");");
   });
   _.each(kuvat, function(photo) {
-    console.log("INSERT INTO `photo` ('group_id','name','description') VALUES ((SELECT id FROM `group` WHERE name = "+photo[0]+"),"+photo[1]+","+photo[2]+");");
+    var group_name = nameUpperCase(photo[0]);
+    console.log("INSERT INTO `photo` ('group_id','name','description') VALUES ((SELECT id FROM `group` WHERE name = "+group_name+"),"+photo[1]+","+photo[2]+");");
   });
   _.each(message, function(comment) {
     if (comment[4] === "''") return;
