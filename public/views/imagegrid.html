@@ -1,8 +1,8 @@
 <div class="image-grid">
   <% _.each(thumbnails, function(thumbnail) { %>
-    <a href="#">
+    <a href="<%= thumbnail.url %>">
       <div class="photo">
-        <img src="<%= thumbnail.url %>">
+        <img src="<%= thumbnail.imageurl %>">
         <div class="caption"><p><%= thumbnail.caption %></p></div>
       </div>
     </a>

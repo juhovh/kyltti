@@ -21,7 +21,8 @@ exports.setup = function(app) {
       var thumbnails = _.map(sortedgroups, function(group) {
         var random_idx = Math.floor((Math.random()*group.photo_ids.length));
         return {
-          url: '/api/photos/'+group.photo_ids[random_idx]+'/thumb',
+          url: '/groups/'+group.id,
+          imageurl: '/api/photos/'+group.photo_ids[random_idx]+'/thumb',
           caption: group.name
         };
       });
