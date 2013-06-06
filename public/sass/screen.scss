@@ -120,5 +120,12 @@ div.image-list {
       width: 50%;
     }
   }
+  div.image-list {
+    div.photo {
+      > img {
+        width: 100%;
+      }
+    }
+  }
 }
 
