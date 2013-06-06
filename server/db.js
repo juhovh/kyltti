@@ -1,5 +1,22 @@
 var sqlite3 = require('sqlite3');
+var passwordHash = require('password-hash');
+
 var db = new sqlite3.cached.Database('database.sqlite', sqlite3.READWRITE);
+
+
+exports.authenticate = function(username, password, callback) {
+  var query = 'SELECT * FROM "user" WHERE "username" = ?';
+  var params = [username];
+  db.get(query, params, function(err, user) {
+    if (err || !user) {
+      callback(false);
+    } else if (passwordHash.verify(password, user.password)) {
+      callback(true);
+    } else {
+      callback(false);
+    }
+  });
+};
 
 exports.listGossips = function(callback) {
   var query = "SELECT * FROM gossip";

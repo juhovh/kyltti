@@ -9,12 +9,16 @@
     "grunt-contrib-clean": "0.4.1",
     "grunt-contrib-jshint": "0.5.4",
     "grunt-contrib-compass": "0.2.0",
-    "grunt-contrib-watch": "0.4.4"
+    "grunt-contrib-watch": "0.4.4",
+
+    "mocha": "1.10.0",
+    "chai": "1.6.1"
   },
   "dependencies": {
     "express": "3.2.5",
     "consolidate": "0.9.1",
     "client-sessions": "0.3.1",
+    "password-hash": "1.2.1",
 
     "sqlite3": "2.1.7",
     "aws-sdk": "1.2.0",

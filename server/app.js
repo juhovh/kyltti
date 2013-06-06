@@ -2,6 +2,7 @@ var express = require('express');
 var cons = require('consolidate');
 var clientSessions = require('client-sessions');
 
+var auth = require('./auth');
 var views = require('./views');
 var public = require('./public');
 var private = require('./private');
@@ -17,6 +18,7 @@ module.exports = function(secret, viewspath, staticpath) {
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(clientSessions({
+      cookieName: 'session',
       secret: secret
     }));
     app.use(express.static(staticpath));
@@ -29,6 +31,7 @@ module.exports = function(secret, viewspath, staticpath) {
     app.set('views', viewspath);
   });
 
+  auth.setup(app);
   views.setup(app);
   public.setup(app);
   private.setup(app);
