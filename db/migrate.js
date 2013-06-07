@@ -52,7 +52,7 @@ function getTableValues(data, tablename) {
 function generateGroups(kuvat) {
   var groups = _.groupBy(kuvat, function(arr) { return arr[0]; });
   return _.map(groups, function(value, key) {
-    var match = value[0][1].match(new RegExp("^'(.*)\\d+'$"))
+    var match = value[0][1].match(new RegExp("^'(.*)\\d+'$"));
     if (!match) {
       throw new Error("Invalid name: " + value[0][1]);
     }
@@ -69,7 +69,7 @@ function nameUpperCase(name) {
 
   // If there are multiple words, convert all first characters to upper case
   var match;
-  while (match = name.match(/(^|\s)[a-z]/)) {
+  while ((match = name.match(/(^|\s)[a-z]/))) {
     var matchidx = match.index === 0 ? match.index : match.index+1;
     name = name.slice(0, matchidx) + name.charAt(matchidx).toUpperCase() + name.slice(matchidx+1);
   }
@@ -114,9 +114,9 @@ function insertOriginalDump(data) {
   _.each(palaute, function(comment) {
     var response = _.find(vastaus, function(resp) { return resp[0] == comment[0]; });
     if (response) {
-      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted','response') VALUES ('palaute',"+comment[3]+","+comment[2]+","+comment[4]+","+(comment[5] != 0 ? "0" : "1")+","+response[1]+");");
+      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted','response') VALUES ('palaute',"+comment[3]+","+comment[2]+","+comment[4]+","+(comment[5] !== "0" ? "0" : "1")+","+response[1]+");");
     } else {
-      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted') VALUES ('palaute',"+comment[3]+","+comment[2]+","+comment[4]+","+(comment[5] != 0 ? "0" : "1")+");");
+      console.log("INSERT INTO `comment` ('type','date','nick','message','deleted') VALUES ('palaute',"+comment[3]+","+comment[2]+","+comment[4]+","+(comment[5] !== "0" ? "0" : "1")+");");
     }
   });
   console.log("COMMIT;");

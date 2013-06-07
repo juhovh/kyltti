@@ -9,7 +9,8 @@ module.exports = function(grunt) {
     jshint: {
       all: [
         'Gruntfile.js',
-        'server/**/*.js'
+        'server/**/*.js',
+        'db/**/*.js'
       ]
     },
     compass: {
