@@ -68,6 +68,18 @@ nav.menu {
   @include box-sizing(border-box);
   li.selected {
     color: white;
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      position: absolute;
+
+      /* These values are mostly by trial and error */
+      border: 6px solid transparent;
+      border-left-color: #fff;
+      margin-left: -12px;
+      margin-top: 3px;
+    }
   }
 }
 
