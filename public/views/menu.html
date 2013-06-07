@@ -1,6 +1,6 @@
 <ul>
   <% _.each(groups, function(group) { %>
-    <li>
+    <li class="<% if (group.selected) print("selected"); %>">
       <a href="<%= group.url %>"><%= group.name %></a>
     </li>
   <% }); %>
