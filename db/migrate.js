@@ -96,7 +96,12 @@ function insertOriginalDump(data) {
   });
   _.each(kuvat, function(photo) {
     var group_name = nameUpperCase(photo[0]);
-    console.log("INSERT INTO `photo` ('group_id','name','description') VALUES ((SELECT id FROM `group` WHERE name = "+group_name+"),"+photo[1]+","+photo[2]+");");
+    var description = photo[2];
+    if (description === "''" || description == "'.'") {
+      console.log("INSERT INTO `photo` ('group_id','name') VALUES ((SELECT id FROM `group` WHERE name = "+group_name+"),"+photo[1]+");");
+    } else {
+      console.log("INSERT INTO `photo` ('group_id','name','description') VALUES ((SELECT id FROM `group` WHERE name = "+group_name+"),"+photo[1]+","+description+");");
+    }
   });
   _.each(message, function(comment) {
     if (comment[4] === "''") return;

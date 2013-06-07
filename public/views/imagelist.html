@@ -4,7 +4,9 @@
       <img src="<%= image.url %>">
     </div>
     <div class="description">
-      &ldquo;<%= image.description %>&rdquo;
+      <% if (image.description) { %>
+        &ldquo;<%= image.description %>&rdquo;
+      <% } %>
     </div>
   <% }); %>
 </div>
