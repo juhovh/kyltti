@@ -2,11 +2,7 @@ var _ = require('underscore');
 
 var db = require('./db');
 
-function getSortedGroups(selected, callback) {
-  if (typeof(selected) === 'function') {
-    callback = selected;
-    selected = null;
-  }
+function getSortedGroups(callback) {
   db.listGroups(function(err, rows) {
     if (err) {
       callback(err, null);
@@ -16,10 +12,10 @@ function getSortedGroups(selected, callback) {
     var groups = _.map(sortedgroups, function(group) {
       var random_idx = Math.floor((Math.random()*group.photo_ids.length));
       return {
+        id: group.id,
         name: group.name,
         url: '/groups/'+group.id,
-        imageurl: '/api/photos/'+group.photo_ids[random_idx]+'/thumb',
-        selected: (selected === ''+group.id)
+        imageurl: '/api/photos/'+group.photo_ids[random_idx]+'/thumb'
       };
     });
     callback(null, groups);
@@ -35,7 +31,7 @@ exports.setup = function(app) {
         return;
       }
 
-      res.render('menu', {groups: groups}, function(err, menu) {
+      res.render('menu', {groups: groups, selected_group: null}, function(err, menu) {
         if (err) {
           res.send(500);
           return;
@@ -55,7 +51,7 @@ exports.setup = function(app) {
   });
 
   app.get('/groups/:id', function(req, res) {
-    getSortedGroups(req.params.id, function(err, groups) {
+    getSortedGroups(function(err, groups) {
       if (err) {
         res.send(500);
         return;
@@ -72,8 +68,8 @@ exports.setup = function(app) {
             description: photo.description
           };
         });
-        res.render('menu', {groups: groups}, function(err, menu) {
-          res.render('imagelist', {images: imagemodels}, function(err, imagelist) {
+        res.render('menu', {groups: groups, selected_group: req.params.id}, function(err, menu) {
+          res.render('imagelist', {images: imagemodels, groups: groups, selected_group: req.params.id}, function(err, imagelist) {
             res.render('main', {
               menu: menu,
               content: imagelist
