@@ -1,4 +1,15 @@
 <div class="image-list">
+  <div class="navigation">
+    <h2>
+      <% if (navigation.current) print(navigation.current.name); %>
+    </h2>
+    <div class="previous">
+      <% if (navigation.previous) print(navigation.previous.name); %>
+    </div>
+    <div class="next">
+      <% if (navigation.next) print(navigation.next.name); %>
+    </div>
+  </div>
   <% _.each(images, function(image) { %>
     <div class="photo">
       <img src="<%= image.url %>">

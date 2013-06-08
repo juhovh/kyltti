@@ -39,7 +39,6 @@ a {
 hr {
   background-color: $lightGreyColor;
   color: $lightGreyColor;
-  margin-top: 50px;
   border: 0 none;
   height: 1px;
 }
@@ -87,6 +86,7 @@ div.content {
   @include inline-block(top);
   width: 100% - $menuWidth;
   @include box-sizing(border-box);
+  margin-bottom: 30px;
 }
 
 div.image-grid {
@@ -101,14 +101,28 @@ div.image-grid {
 div.image-list {
   color: white;
   text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+
+  div.navigation {
+    padding-left: 5px;
+    padding-right: 5px;
+    @include clearfix;
+    h2 {
+      text-align: left;
+      font-size: 2em;
+      margin-bottom: 30px;
+    }
+    div.previous {
+      float: left;
+    }
+    div.next {
+      float: right;
+    }
+  }
 
   div.photo {
     float: none;
-    > img {
-      width: 80%;
-      margin-left: auto;
-      margin-right: auto;
-    }
   }
   div.description {
     margin-top: 10px;

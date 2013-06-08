@@ -62,14 +62,33 @@ exports.setup = function(app) {
           return;
         }
 
-        var imagemodels = _.map(photos, function(photo) {
+        var images = _.map(photos, function(photo) {
           return {
             url: '/api/photos/'+photo.id+'/medium',
             description: photo.description
           };
         });
+
+        var i, navigation = {};
+        for (i=0; i<groups.length; i++) {
+          if (req.params.id === ''+groups[i].id) {
+            navigation.previous = groups[i-1];
+            navigation.current = groups[i];
+            navigation.next = groups[i+1];
+            break;
+          }
+        }
+
         res.render('menu', {groups: groups, selected_group: req.params.id}, function(err, menu) {
-          res.render('imagelist', {images: imagemodels, groups: groups, selected_group: req.params.id}, function(err, imagelist) {
+          if (err) {
+            res.send(500);
+            return;
+          }
+          res.render('imagelist', {images: images, navigation: navigation}, function(err, imagelist) {
+            if (err) {
+              res.send(500);
+              return;
+            }
             res.render('main', {
               menu: menu,
               content: imagelist
