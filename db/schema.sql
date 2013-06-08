@@ -10,7 +10,7 @@ CREATE TABLE "news" (
     "id" integer PRIMARY KEY,
     "deleted" integer NOT NULL DEFAULT 0,
     "title" text NOT NULL,
-    "body" text NOT NULL,
+    "message" text NOT NULL,
     "date" datetime NOT NULL
 );
 CREATE TABLE "location" (
