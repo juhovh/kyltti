@@ -171,11 +171,8 @@ div.image-list {
     }
   }
   div.image-list {
-    div.photo {
-      > img {
-        width: 100%;
-      }
-    }
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
