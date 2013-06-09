@@ -62,11 +62,12 @@ header {
     padding-top: 30px;
     padding-bottom: 0;
     margin-bottom: 30px;
+
     div.header-info {
       width: 100%;
       text-align: center;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding-left: $photoPadding * 2;
+      padding-right: $photoPadding * 2;
       padding-top: 20px;
       padding-bottom: 20px;
       h1 {

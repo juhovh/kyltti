@@ -22,6 +22,14 @@ $containerMargin: 40px;
 $headerInfoWidth: 30%;
 $menuWidth: 15%;
 
+$arrowWidth: 6px;
+$arrowColor: white;
+
+$photoPadding: 5px;
+$photoBorderColor: #474747;
+$photoCaptionOpacity: 0.8;
+$photoCaptionPadding: 7px;
+
 @import "header";
 @import "photo";
 
@@ -69,13 +77,11 @@ nav.menu {
     color: white;
     &:before {
       content: '';
-      width: 0;
-      height: 0;
       position: absolute;
+      border: $arrowWidth solid transparent;
+      border-left-color: $arrowColor;
 
       /* These values are mostly by trial and error */
-      border: 6px solid transparent;
-      border-left-color: #fff;
       margin-left: -12px;
       margin-top: 3px;
     }
@@ -94,7 +100,7 @@ div.image-grid {
     width: 25%;
 
     // This makes loading look nicer
-    min-height: 60px;
+    min-height: 40px;
   }
 }
 
@@ -105,8 +111,8 @@ div.image-list {
   margin-right: 10%;
 
   div.navigation {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: $photoPadding;
+    padding-right: $photoPadding;
     @include clearfix;
     h2 {
       text-align: left;
@@ -117,13 +123,11 @@ div.image-list {
       float: left;
       &:before {
         content: '';
-        width: 0;
-        height: 0;
         float: left;
+        border: $arrowWidth solid transparent;
+        border-right-color: $arrowColor;
 
         /* These values are mostly by trial and error */
-        border: 6px solid transparent;
-        border-right-color: #fff;
         margin-top: 2px;
         margin-right: 6px;
       }
@@ -132,13 +136,11 @@ div.image-list {
       float: right;
       &:before {
         content: '';
-        width: 0;
-        height: 0;
         float: right;
+        border: $arrowWidth solid transparent;
+        border-left-color: $arrowColor;
 
         /* These values are mostly by trial and error */
-        border: 6px solid transparent;
-        border-left-color: #fff;
         margin-top: 2px;
         margin-left: 6px;
       }
@@ -156,8 +158,8 @@ div.image-list {
 
 @media (max-width: 767px) {
   div.container {
-    margin-left: 5px;
-    margin-right: 5px;
+    margin-left: $photoPadding;
+    margin-right: $photoPadding;
   }
   nav.menu {
     display: none;
