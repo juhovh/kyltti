@@ -22,28 +22,62 @@ function getSortedGroups(callback) {
   });
 }
 
+function getNews(callback) {
+  db.listNews(function(err, rows) {
+    if (err) {
+      callback(err, null);
+      return;
+    }
+    var news = _.map(rows, function(news_item) {
+      var news_date = new Date(news_item.date);
+      news_date = news_date.getDate() + '.' + (news_date.getMonth() + 1) + '.' + news_date.getFullYear();
+      return {
+        title: news_item.title,
+        message: news_item.message,
+        date: news_date
+      };
+    });
+    callback(null, news);
+  });
+}
+
 exports.setup = function(app) {
 
   app.get('/', function(req, res) {
+
     getSortedGroups(function(err, groups) {
       if (err) {
         res.send(500);
         return;
       }
 
-      res.render('menu', {groups: groups, selected_group: null}, function(err, menu) {
+      getNews(function(err, news) {
         if (err) {
           res.send(500);
           return;
         }
-        res.render('imagegrid', {groups: groups}, function(err, imagegrid) {
+
+        res.render('menu', {groups: groups, selected_group: null}, function(err, menu) {
           if (err) {
             res.send(500);
             return;
           }
-          res.render('main', {
-            menu: menu,
-            content: imagegrid
+          res.render('imagegrid', {groups: groups}, function(err, imagegrid) {
+            if (err) {
+              res.send(500);
+              return;
+            }
+            res.render('news', {news: news}, function(err, newsitems) {
+              if (err) {
+                res.send(500);
+                return;
+              }
+              res.render('main', {
+                menu: menu,
+                content: imagegrid,
+                news: newsitems
+              });
+            });
           });
         });
       });

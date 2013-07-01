@@ -1,0 +1,24 @@
+<div class="table" id="newslist">
+<% _.each(news, function(news_item, index) { %>
+  <% if (index > 1) { %>
+    <div class="row" style="display: none;">
+  <% } else { %>
+    <div class="row">
+  <% } %>
+    <div class="cell left"><%= news_item.date %></div>
+    <div class="cell"><%= news_item.message %></div>
+  </div>
+<% }); %>
+</div>
+<a href="#" id="reveal_news" onclick="toggleNews(); return false;" class="link">+ KAIKKI JUTUT!</a>
+<script type="text/javascript">
+function toggleNews() {
+  var news = document.getElementById("newslist");
+  var toggle = news.children[2].style.display;
+  for (var i = 0; i < news.children.length; i++) {
+    if (i > 1) {
+      news.children[i].style.display = (toggle == "none" ? "table-row" : "none");
+    }
+  }
+}
+</script>

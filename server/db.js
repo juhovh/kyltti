@@ -20,7 +20,7 @@ exports.authenticate = function(username, password, callback) {
 };
 
 exports.listNews = function(callback) {
-  var query = 'SELECT * FROM "news"';
+  var query = 'SELECT * FROM "news" WHERE deleted = 0 ORDER BY date DESC';
   db.all(query, callback);
 };
 

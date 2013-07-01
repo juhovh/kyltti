@@ -30,8 +30,12 @@ $photoBorderColor: #474747;
 $photoCaptionOpacity: 0.8;
 $photoCaptionPadding: 7px;
 
+$newsColor: rgb(128, 128, 128);
+$linkColor: rgb(206, 130, 24);
+
 @import "header";
 @import "photo";
+@import "news";
 
 body {
   font-family: 'Rambla', sans-serif;
