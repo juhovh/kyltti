@@ -1,6 +1,7 @@
 div.wide-container {
     background-color: $newsBodyColor;
     margin-bottom: 40px;
+    @include box-shadow(0px 4px 15px black);
 }
 
 div.news {
