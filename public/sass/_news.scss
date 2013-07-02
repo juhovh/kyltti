@@ -1,4 +1,10 @@
+div.wide-container {
+    background-color: $newsBodyColor;
+    margin-bottom: 40px;
+}
+
 div.news {
+  font-size: 0.95em;
   color: rgb(212, 212, 212);
 
   div.table {

@@ -32,7 +32,7 @@ $photoBorderColor: #474747;
 $photoCaptionOpacity: 0.8;
 $photoCaptionPadding: 7px;
 
-$newsColor: rgb(128, 128, 128);
+$newsBodyColor: rgb(30, 30, 30);
 $linkColor: rgb(206, 130, 24);
 
 @import "header";
@@ -79,6 +79,10 @@ nav.menu {
   width: $menuWidth;
   color: $lightGreyColor;
   @include box-sizing(border-box);
+  li {
+    margin-bottom: 4px;
+    font-size: 0.95em;
+  }
   li.selected {
     color: white;
     &:before {
@@ -89,7 +93,7 @@ nav.menu {
 
       /* These values are mostly by trial and error */
       margin-left: -12px;
-      margin-top: 3px;
+      margin-top: 1px;
     }
   }
 }
