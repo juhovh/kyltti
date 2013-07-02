@@ -37,10 +37,14 @@
         <p>Saa olla terävää.</p>
       </div>
     </header>
+    <% if (typeof news != 'undefined') { %>
     <div class="container">
       <div class="news">
         <%= news %>
       </div>
+    </div>
+    <% } %>
+    <div class="container">
       <nav class="menu">
         <%= menu %>
       </nav><div class="content">

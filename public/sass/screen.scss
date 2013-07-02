@@ -14,7 +14,9 @@
 @import "compass/typography/links/unstyled-link";
 
 $headerColor: #cec6be;
-$lightGreyColor: #474747;
+//$lightGreyColor: #474747;
+$lightGreyColor: #696969;
+$lightGreyBodyColor: #303030;
 $darkGreyColor: #1e1e1e;
 
 $containerMargin: 40px;
@@ -39,7 +41,7 @@ $linkColor: rgb(206, 130, 24);
 
 body {
   font-family: 'Rambla', sans-serif;
-  background-color: $darkGreyColor;
+  background-color: $lightGreyBodyColor;
   margin-bottom: 40px;
 }
 
