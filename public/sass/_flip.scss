@@ -6,10 +6,7 @@ div.flip-container {
   position: relative;
   z-index: 1;
   @include perspective(1000);
-  height: 100%;
   div.flip-box {
-    width: 100%;
-    height: 100%;
     @include transform-style(preserve-3d);
     @include transition(all 0.2s linear);
   }
