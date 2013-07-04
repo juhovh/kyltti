@@ -9,6 +9,7 @@
 @import "compass/css3/opacity";
 @import "compass/css3/inline-block";
 @import "compass/css3/transform";
+@import "compass/css3/transition";
 @import "compass/css3/images";
 @import "compass/utilities/general/clearfix";
 @import "compass/typography/links/unstyled-link";
@@ -38,6 +39,7 @@ $linkColor: rgb(206, 130, 24);
 @import "header";
 @import "photo";
 @import "news";
+@import "flip";
 
 body {
   font-family: 'Rambla', sans-serif;
