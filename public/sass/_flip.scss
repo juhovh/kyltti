@@ -12,15 +12,15 @@ div.flip-container {
   }
 
   div.face {
-    position: absolute;
     width: 100%;
     height: 100%;
     @include backface-visibility(hidden);
   }
   div.face.back {
+    position: absolute;
+    top: 0;
     display: block;
     @include rotateY(180deg);
     @include box-sizing(border-box);
-    padding: 10px;
   }
 }
