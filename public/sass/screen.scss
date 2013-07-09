@@ -28,7 +28,7 @@ $headerInfoWidth: 30%;
 $menuWidth: 15%;
 
 $arrowWidth: 6px;
-$arrowColor: rgb(206, 130, 24);
+$arrowColor: white;
 
 $photoPadding: 5px;
 $photoBorderColor: #474747;
@@ -37,6 +37,7 @@ $photoCaptionPadding: 7px;
 
 $newsBodyColor: rgb(30, 30, 30);
 $linkColor: rgb(206, 130, 24);
+$groupArrowColor: $linkColor;
 
 @import "header";
 @import "photo";
@@ -96,7 +97,7 @@ nav.menu {
       content: '';
       position: absolute;
       border: $arrowWidth solid transparent;
-      border-left-color: $arrowColor;
+      border-left-color: $groupArrowColor;
 
       /* These values are mostly by trial and error */
       margin-left: -12px;
