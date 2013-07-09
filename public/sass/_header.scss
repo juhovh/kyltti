@@ -24,7 +24,8 @@ header {
     width: 100%;
     @include box-sizing(border-box);
     position: relative;
-    padding-top: 40px;
+    padding-top: $headerPadding;
+    padding-bottom: $headerPadding;
 
     img {
       display: block;
@@ -80,7 +81,8 @@ header {
       width: 100%;
       padding-left: 40px;
       padding-right: 40px;
-      padding-bottom: 40px;
+      padding-bottom: $headerPadding / 2;
+      padding-top: $headerPadding / 2;
       div.reflection {
         display: none;
       }

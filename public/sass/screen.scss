@@ -20,7 +20,9 @@ $lightGreyColor: #696969;
 $lightGreyBodyColor: #303030;
 $darkGreyColor: #1e1e1e;
 
-$containerMargin: 40px;
+$headerPadding: 80px;
+
+$containerMargin: 80px;
 
 $headerInfoWidth: 30%;
 $menuWidth: 15%;
@@ -112,7 +114,7 @@ div.content {
 
 div.image-grid {
   div.photo {
-    width: 25%;
+    width: 20%;
 
     // This makes loading look nicer
     min-height: 40px;
