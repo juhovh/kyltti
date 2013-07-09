@@ -1,5 +1,5 @@
 test:
 	./node_modules/mocha/bin/mocha \
-	  --reporter list
+	  --reporter list --recursive
 
 .PHONY: test

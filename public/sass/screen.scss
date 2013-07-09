@@ -9,15 +9,20 @@
 @import "compass/css3/opacity";
 @import "compass/css3/inline-block";
 @import "compass/css3/transform";
+@import "compass/css3/transition";
 @import "compass/css3/images";
 @import "compass/utilities/general/clearfix";
 @import "compass/typography/links/unstyled-link";
 
 $headerColor: #cec6be;
-$lightGreyColor: #474747;
+//$lightGreyColor: #474747;
+$lightGreyColor: #696969;
+$lightGreyBodyColor: #303030;
 $darkGreyColor: #1e1e1e;
 
-$containerMargin: 40px;
+$headerPadding: 76px;
+
+$containerMargin: 80px;
 
 $headerInfoWidth: 30%;
 $menuWidth: 15%;
@@ -30,12 +35,18 @@ $photoBorderColor: #474747;
 $photoCaptionOpacity: 0.8;
 $photoCaptionPadding: 7px;
 
+$newsBodyColor: rgb(30, 30, 30);
+$linkColor: rgb(206, 130, 24);
+$groupArrowColor: $linkColor;
+
 @import "header";
 @import "photo";
+@import "news";
+@import "flip";
 
 body {
   font-family: 'Rambla', sans-serif;
-  background-color: $darkGreyColor;
+  background-color: $lightGreyBodyColor;
   margin-bottom: 40px;
 }
 
@@ -73,17 +84,24 @@ nav.menu {
   width: $menuWidth;
   color: $lightGreyColor;
   @include box-sizing(border-box);
+  li {
+    margin-bottom: 4px;
+    font-size: 0.95em;
+    a {
+      &:hover { color: $linkColor; }
+    }
+  }
   li.selected {
-    color: white;
+    color: $linkColor;
     &:before {
       content: '';
       position: absolute;
       border: $arrowWidth solid transparent;
-      border-left-color: $arrowColor;
+      border-left-color: $groupArrowColor;
 
       /* These values are mostly by trial and error */
       margin-left: -12px;
-      margin-top: 3px;
+      margin-top: 1px;
     }
   }
 }
@@ -97,7 +115,7 @@ div.content {
 
 div.image-grid {
   div.photo {
-    width: 25%;
+    width: 20%;
 
     // This makes loading look nicer
     min-height: 40px;

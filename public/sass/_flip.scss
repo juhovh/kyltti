@@ -1,0 +1,26 @@
+div.flip-container:hover > div.flip-box {
+  @include rotateY(180deg);
+}
+
+div.flip-container {
+  position: relative;
+  z-index: 1;
+  @include perspective(1000);
+  div.flip-box {
+    @include transform-style(preserve-3d);
+    @include transition(all 0.2s linear);
+  }
+
+  div.face {
+    width: 100%;
+    height: 100%;
+    @include backface-visibility(hidden);
+  }
+  div.face.back {
+    position: absolute;
+    top: 0;
+    display: block;
+    @include rotateY(180deg);
+    @include box-sizing(border-box);
+  }
+}

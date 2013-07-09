@@ -22,13 +22,27 @@
       <script src="/html5shiv-3.6.2/html5shiv-printshiv.js"></script>
     <![endif]-->
   </head>
+
   <body>
     <header>
+      <div class="header-image">
+        <div class="flip-container">
+      <div class="flip-box">
+        <div class="front face">
+        <img src='/images/kyltti_front.png' />
+      </div>
+      <div class="back face center">
+        <img src="/images/kyltti_back.png" />
+      </div>
+      </div>
+    </div>
+    </div>
+      <!--
       <div class="header-image">
         <img src="/images/kyltti.jpg">
         <div class="reflection">
           <img src="/images/kyltti.jpg">
-          <div><!-- / --></div>
+          <div>--><!-- / --><!--</div>
       </div>
       </div><div class="header-info">
         <h1>kyltti.com</h1>
@@ -36,7 +50,15 @@
         <p>Reissut ja tarinat jeejee mitä kuuluu kirjoita tähän jotain.</p>
         <p>Saa olla terävää.</p>
       </div>
+    -->
     </header>
+    <% if (typeof news != 'undefined') { %>
+    <div class="wide-container">
+      <div class="container news" style="padding-bottom: 20px;">
+        <%= news %>
+      </div>
+    </div>
+    <% } %>
     <div class="container">
       <nav class="menu">
         <%= menu %>
